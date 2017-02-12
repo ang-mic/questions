@@ -1,0 +1,31 @@
+Describe 2 different ways of versioning REST API endpoints. Which is your preferred method
+and why.
+
+    Two common approaches to REST API versioning are the followings:
+
+    1. URI versioning
+
+    In this approach we embed the version in the URI. In that way we guaranty that we access the specified version of
+    the API.
+
+        - example: host/v1/users/2
+
+    URI versioning is easy to understand, implement and makes API discovery easy, at least on the surface.
+    However, there are few things which makes URI versioning undesirable:
+
+        - The API version is mixed with the resource representation
+        - Links to resources break every time the version changes
+
+    2. Custom request header
+
+    With this strategy we separate the API version from the URIs. Furthermore it provide a versioning mechanism for
+    changes related to the API, but not specifically related to resources, for example authentication. Nevertheless this
+    approach has its weaknesses as well:
+
+        - Each http request must contain an extra request header
+        - API Gateways service provide their own way of versioning the gateway and it might makes things messy
+
+    Conclusion
+
+    Both approaches have trade-offs and depending on the technologies involved, maybe one technique fits better than
+    the other. My choice would be the 'Custom request header'. I believe the separation of concerns is a good thing.

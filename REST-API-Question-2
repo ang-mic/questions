@@ -1,0 +1,63 @@
+How would you design a REST API for an address book? What endpoints will it have (feel free
+to provide sample curl requests)? How would you handle errors?
+
+    I would structure the address book with two resources:
+        - Person  -> has multiple addresses
+        - Address -> can belong to many People but can be accessed independently
+    The Person and Address have the corresponding models which encapsulate their attributes.
+
+    In addition, for error handling we could use a Error model which encapsulates a message that describe the reason of
+    failure. The HTTP response would contain the corresponding Status Code in order for the clients to handle the
+    failure.
+
+    curl -X OPTIONS example.host/api/
+        Description: Information about how to use the API
+        Status Code: 200 OK
+
+    curl -X GET example.host/api/people/
+        Description: Get a list of people
+        Status Code: 200 OK
+
+    curl -X GET example.host/api/people/{id}/
+        Description: Get the specific person
+        Status Code: 200 OK
+
+    curl -X GET example.host/api/people/{id}/addresses
+        Description: Get the list of addresses related to the specific person
+        Status Code: 200 OK
+
+    curl -X GET example.host/api/people/{id}/addresses/{id}/
+        Description: Get the specific address related to the specific person
+        Status Code: 200 OK
+
+    curl -X GET example.host/api/addresses/
+        Description: Get a list of addresses
+        Status Code: 200 OK
+
+    curl -X GET example.host/api/addresses/{id}/
+        Description: Get the specific address
+        Status Code: 200 OK
+
+    curl -X POST --data '...' example.host/api/people/
+        Description: Create new person
+        Status Code: 201 CREATED
+
+    curl -X POST --data '...' example.host/api/people/{id}/address/
+        Description: Create new address for the specific person
+        Status Code: 201 CREATED
+
+    curl -X PUT --data '...' example.host/api/people/{id}/
+            Description: Update the specific person
+            Status Code: 200 OK
+
+    curl -X PUT --data '...' example.host/api/people/{id}/address/{id}
+        Description: Update the specific address
+        Status Code: 200 OK
+
+    curl -X DELETE example.host/api/people/{id}/
+        Description: Delete the specific person
+        Status Code: 204 No Content
+
+    curl -X DELETE example.host/api/people/{id}/address/{id}
+        Description: Delete the specific address
+        Status Code: 204 No Content
