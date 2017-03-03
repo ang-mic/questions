@@ -1,5 +1,3 @@
-package onTrackRetail
-
 import org.scalatest.FunSuite
 
 class OptionQuestionsTest extends FunSuite {

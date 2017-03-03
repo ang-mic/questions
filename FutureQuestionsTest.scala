@@ -1,5 +1,3 @@
-package onTrackRetail
-
 import org.scalatest.FunSuite
 import org.scalatest.concurrent.ScalaFutures
 
